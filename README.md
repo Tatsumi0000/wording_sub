@@ -5,6 +5,11 @@
 yarn install
 ```
 
+### Run electron
+```
+yarn run electron:serve
+```
+
 ### Compiles and hot-reloads for development
 ```
 yarn run serve
