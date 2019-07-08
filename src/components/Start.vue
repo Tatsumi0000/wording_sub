@@ -15,7 +15,14 @@
         v-for="icon in icons"
         :key="icon"
       >
-        <v-btn align-center fab class="btn_size white--text" :color="icon.color">
+        <v-btn
+          align-center
+          fab
+          class="btn_size white--text"
+          :color="icon.color"
+          to="/settings"
+          v-on:click="original2"
+        >
           <v-icon>{{ icon.icon_name }}</v-icon>
         </v-btn>
       </v-flex>
@@ -33,6 +40,22 @@ export default {
         { color: "green", icon_name: "settings" }
       ]
     };
+  },
+  methods: {
+    original2: function() {
+      const Store = require("electron-store");
+      const store = new Store();
+      store.set("unicorn", "ユニコーン");
+      console.log(store.get("unicorn"));
+      //=> '🦄'
+      // Use dot-notation to access nested properties
+      store.set("foo.bar", true);
+      console.log(store.get("foo"));
+      //=> {bar: true}
+
+      store.delete("unicorn");
+      console.log(store.get("unicorn"));
+    }
   }
 };
 </script>

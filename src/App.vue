@@ -1,21 +1,35 @@
 <template>
   <v-app class="my_backgound">
     <v-content>
-      <Start/>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Start from "./components/Start";
+// import Start from "./components/Start";
 
 export default {
   name: "App",
-  components: {
-    Start
-  },
+  components: {},
   data() {
     return {};
+  },
+  methods: {
+    originalaa: function() {
+      const Store = require("electron-store");
+      const store = new Store();
+      store.set("unicorn", "🦄");
+      console.log(store.get("unicorn"));
+      //=> '🦄'
+      // Use dot-notation to access nested properties
+      store.set("foo.bar", true);
+      console.log(store.get("foo"));
+      //=> {bar: true}
+
+      store.delete("unicorn");
+      console.log(store.get("unicorn"));
+    }
   }
 };
 </script>
