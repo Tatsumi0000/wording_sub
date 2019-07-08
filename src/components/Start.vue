@@ -1,33 +1,28 @@
 <template>
+  <!-- <v-app> -->
   <v-container>
-    <v-layout row align-center>
+    <v-layout row>
       <!-- text-XX-centerで中央寄せにする -->
-      <v-flex
-        text-sm-center
-        text-md-center
-        text-lg-center
-        text-xl-center
-        sm4
-        md4
-        lg4
-        xl4
-        pa-3
-        v-for="icon in icons"
-        :key="icon"
-      >
-        <v-btn
-          align-center
-          fab
-          class="btn_size white--text"
-          :color="icon.color"
-          to="/settings"
-          v-on:click="original2"
-        >
-          <v-icon>{{ icon.icon_name }}</v-icon>
+      <v-flex text-sm-center text-md-center text-lg-center text-xl-center sm4 md4 lg4 xl4 pa-3>
+        <v-btn fab class="btn_size white--text" v-on:click="original2" color="red">
+          <v-icon>play_arrow</v-icon>
         </v-btn>
+      </v-flex>
+      <v-flex text-sm-center text-md-center text-lg-center text-xl-center sm4 md4 lg4 xl4 pa-3>
+        <v-btn fab class="btn_size white--text" v-on:click="original2" color="blue">
+          <v-icon>pause</v-icon>
+        </v-btn>
+      </v-flex>
+      <v-flex text-sm-center text-md-center text-lg-center text-xl-center sm4 md4 lg4 xl4 pa-3>
+        <!-- <router-link to="/settings"> -->
+        <v-btn fab class="btn_size white--text" color="green" to="/settings">
+          <v-icon>settings</v-icon>
+        </v-btn>
+        <!-- </router-link> -->
       </v-flex>
     </v-layout>
   </v-container>
+  <!-- </v-app> -->
 </template>
 
 <script>
@@ -55,6 +50,9 @@ export default {
 
       store.delete("unicorn");
       console.log(store.get("unicorn"));
+    },
+    goSettings() {
+      this.$router.replace("/settings");
     }
   }
 };

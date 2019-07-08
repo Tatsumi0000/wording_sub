@@ -1,13 +1,16 @@
 <template>
-  <v-container>
-    <h1>AAAAA</h1>
-    
-  </v-container>
+  <!-- <div></div> -->
+  <v-btn fab class="white--text" color="red" to="/">
+    <v-icon>arrow_back</v-icon>
+  </v-btn>
+  <!-- <h1>ここに設定画面を作っていくよ</h1> -->
 </template>
 
 <script>
 export default {
-  data() {},
+  data() {
+    return {};
+  },
   mounted: {},
   methods: {}
 };
