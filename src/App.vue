@@ -1,9 +1,9 @@
 <template>
   <v-app class="my_backgound">
     <v-content>
-      <!-- <transition name="fade" mode="out-in"> -->
+      <transition name="fade" mode="out-in">
       <router-view />
-      <!-- </transition> -->
+      </transition>
     </v-content>
   </v-app>
 </template>
@@ -16,7 +16,7 @@ export default {
   components: {},
   data() {
     return {
-      methods: {}
+      methods: function() {}
     };
   }
 };

@@ -4,19 +4,19 @@
     <v-layout row>
       <!-- text-XX-centerで中央寄せにする -->
       <v-flex text-sm-center text-md-center text-lg-center text-xl-center sm4 md4 lg4 xl4 pa-3>
-        <v-btn fab class="btn_size white--text" v-on:click="original2" color="red">
-          <v-icon>play_arrow</v-icon>
+        <v-btn fab class="btn_size white--text" v-on:click="startCommnet" color="red">
+          <v-icon size="60">play_arrow</v-icon>
         </v-btn>
       </v-flex>
       <v-flex text-sm-center text-md-center text-lg-center text-xl-center sm4 md4 lg4 xl4 pa-3>
         <v-btn fab class="btn_size white--text" v-on:click="original2" color="blue">
-          <v-icon>pause</v-icon>
+          <v-icon size="60">pause</v-icon>
         </v-btn>
       </v-flex>
       <v-flex text-sm-center text-md-center text-lg-center text-xl-center sm4 md4 lg4 xl4 pa-3>
         <!-- <router-link to="/settings"> -->
         <v-btn fab class="btn_size white--text" color="green" to="/settings">
-          <v-icon>settings</v-icon>
+          <v-icon size="60">settings</v-icon>
         </v-btn>
         <!-- </router-link> -->
       </v-flex>
@@ -51,8 +51,24 @@ export default {
       store.delete("unicorn");
       console.log(store.get("unicorn"));
     },
-    goSettings() {
-      this.$router.replace("/settings");
+    // コメントを流すウィンドウ
+    openCommentWindow: function() {},
+    // goSettings: function() {
+    //   this.$router.replace("/settings");
+    // },
+    startCommnet: function() {
+      const { RTMClient } = require("@slack/rtm-api");
+      const Store = require("electron-store");
+      const store = new Store();
+      // 設定ファイルから呼び出す
+      const token = store.get("SLACK_XOXB_TOKEN");
+      console.log(token);
+      const rtm = new RTMClient(token);
+      rtm.start().catch(console.error);
+
+      rtm.on("message", event => {
+        console.log(event);
+      });
     }
   }
 };
@@ -60,8 +76,8 @@ export default {
 
 <style scoped>
 .btn_size {
-  width: 100px;
-  height: 100px;
+  width: 20vw;
+  height: 20vw;
 }
 
 .play_icon {
