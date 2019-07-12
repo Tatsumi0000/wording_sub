@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>子ウィンドウ</title>
+</head>
+
+<body style="background:#ddf;">
+  <div id="app">
+    <h1 style="color:#007;">ここは子ウィンドウです</h1>
+  </div>
+  <script>
+    require('./renderer.js')
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script>
+
+    new Vue({
+      el: '#app'
+    })
+
+  </script>
+</body>
+
+</html>

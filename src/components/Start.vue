@@ -4,7 +4,7 @@
     <v-layout row>
       <!-- text-XX-centerで中央寄せにする -->
       <v-flex text-sm-center text-md-center text-lg-center text-xl-center sm4 md4 lg4 xl4 pa-3>
-        <v-btn fab class="btn_size white--text" v-on:click="startCommnet" color="red">
+        <v-btn fab class="btn_size white--text" v-on:click="createCommentWindow()" color="red">
           <v-icon size="60">play_arrow</v-icon>
         </v-btn>
       </v-flex>
@@ -52,10 +52,23 @@ export default {
       console.log(store.get("unicorn"));
     },
     // コメントを流すウィンドウ
-    openCommentWindow: function() {},
-    // goSettings: function() {
-    //   this.$router.replace("/settings");
-    // },
+    createCommentWindow: function() {
+      const { BrowserWindow } = require("electron");
+      const url = `http://localhost:8080/#/showMessages`;
+      commentWindow = new BrowserWindow({
+        width: 600,
+        height: 800
+        // transparent: true,
+        // frame: false,
+        // toolbar: false
+      });
+      // commentWindow.loadURL(url);
+
+      //window.open();
+      commentWindow.open();
+      // goSettings: function() {
+      //   this.$router.replace("/settings");
+    },
     startCommnet: function() {
       const { RTMClient } = require("@slack/rtm-api");
       const Store = require("electron-store");
@@ -66,6 +79,7 @@ export default {
       const rtm = new RTMClient(token);
       rtm.start().catch(console.error);
 
+      // メッセージ受信を開始
       rtm.on("message", event => {
         console.log(event);
       });
